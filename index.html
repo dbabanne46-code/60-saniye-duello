@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#17143a">
+  <title>60 Saniye Düello</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#fff;background:#10102a;font-synthesis:none}
+    *{box-sizing:border-box} body{margin:0;min-height:100dvh;background:radial-gradient(circle at 15% 0%,#4939a8 0%,transparent 36%),radial-gradient(circle at 90% 95%,#392577 0%,transparent 34%),#10102a}
+    button{font:inherit;cursor:pointer} button:focus-visible{outline:3px solid #f9d85c;outline-offset:3px}
+    .shell{width:min(100%,520px);min-height:100dvh;margin:auto;padding:24px 18px calc(28px + env(safe-area-inset-bottom));display:flex;flex-direction:column}
+    header{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand{font-weight:900;letter-spacing:.04em;font-size:1.06rem}.brand span{color:#ffd76d}.pill{font-size:.82rem;font-weight:700;background:#ffffff1c;border:1px solid #ffffff36;padding:8px 11px;border-radius:999px}
+    main{flex:1;display:flex;flex-direction:column;justify-content:center}.card{background:#ffffff12;border:1px solid #ffffff2b;box-shadow:0 20px 60px #05051455;border-radius:28px;padding:25px 22px;backdrop-filter:blur(12px)}
+    .eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.73rem;font-weight:900;color:#c5bbff;margin:0 0 12px}.hero{font-size:clamp(2.35rem,10vw,3.8rem);line-height:1.04;letter-spacing:-.055em;margin:0 0 15px}.hero strong{color:#ffd76d}.lead{font-size:1.05rem;line-height:1.55;color:#e0dcff;margin:0 0 24px}
+    .primary,.secondary{width:100%;border:0;border-radius:17px;padding:17px 18px;font-weight:900;font-size:1.04rem}.primary{background:#ffdc70;color:#20194c;box-shadow:0 8px 0 #c69531}.primary:active{transform:translateY(5px);box-shadow:0 3px 0 #c69531}.secondary{background:#ffffff17;color:#fff;border:1px solid #ffffff40;margin-top:12px}
+    .info{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}.info span{background:#ffffff15;border-radius:12px;padding:9px 11px;color:#ddd7ff;font-size:.85rem}
+    .topline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:17px}.time{font-variant-numeric:tabular-nums;background:#ffffff20;border-radius:13px;padding:9px 12px;font-size:1.25rem;font-weight:900}.time.low{background:#ff6678;color:#21122a}.score{font-weight:900;color:#ffdc70}.bar{height:9px;border-radius:99px;background:#ffffff2a;overflow:hidden;margin-bottom:22px}.bar>div{height:100%;background:linear-gradient(90deg,#ffcd66,#ff6b98);width:100%;transition:width .2s linear}
+    .number{color:#c5bbff;font-size:.84rem;font-weight:800;margin:0 0 12px}.question{font-size:clamp(1.45rem,6vw,2.05rem);line-height:1.22;margin:0 0 24px;min-height:2.5em;letter-spacing:-.025em}.answers{display:grid;gap:11px}.answer{width:100%;text-align:left;background:#ffffff17;border:2px solid #ffffff2b;border-radius:16px;color:#fff;padding:15px;font-weight:750;min-height:58px}.answer:hover:not(:disabled){background:#ffffff28}.answer:disabled{cursor:default;opacity:1}.answer.correct{border-color:#69ebb8;background:#17684c}.answer.wrong{border-color:#ff8091;background:#8b334d}.answer .letter{color:#ffdc70;margin-right:10px}.feedback{min-height:29px;margin:17px 0 0;font-weight:800;text-align:center}.feedback.good{color:#76f2bd}.feedback.bad{color:#ff9bab}
+    .result-icon{font-size:3.8rem;line-height:1;margin-bottom:15px}.result-score{font-size:3.5rem;letter-spacing:-.07em;font-weight:950;color:#ffdc70;margin:0}.result-label{font-size:1.2rem;margin:4px 0 18px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:23px}.stat{background:#ffffff15;border-radius:14px;padding:12px}.stat b{display:block;font-size:1.4rem}.stat small{color:#c9c3e7}.note{font-size:.82rem;color:#bbb5d7;text-align:center;margin:18px 0 0} footer{text-align:center;color:#aaa4cf;font-size:.77rem;padding-top:20px}
+    .nav{display:flex;gap:8px;margin:18px 0}.nav button{flex:1;border:1px solid #ffffff3b;background:#ffffff16;color:#fff;border-radius:13px;padding:11px;font-weight:800}.nav button.active{background:#ffdc70;color:#20194c}.field{display:block;margin:12px 0;color:#ddd7ff;font-size:.9rem;font-weight:700}.field input{display:block;width:100%;margin-top:6px;border:1px solid #ffffff52;background:#11102b;color:#fff;border-radius:12px;padding:12px;font:inherit}.smallbtn{border:1px solid #ffffff45;background:#ffffff1c;color:#fff;border-radius:11px;padding:9px 12px;font-weight:750}.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid #ffffff20}.muted{color:#c9c3e7;font-size:.9rem;line-height:1.5}.status{min-height:24px;color:#ffdc70;font-size:.9rem}.friendlist{max-height:250px;overflow:auto}.friendlist:empty:after{content:'Henüz kimse yok.';color:#c9c3e7}.sectiontitle{margin:20px 0 8px;font-size:1.1rem}
+    [hidden]{display:none!important}@media(max-height:720px){.shell{padding-top:15px}.card{padding:20px}.question{margin-bottom:17px}.answer{padding:11px;min-height:50px}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><div class="brand">⚡ <span>60</span> SANİYE DÜELLO</div><div class="pill" id="bestBadge">En iyi: 0</div></header>
+    <nav class="nav" aria-label="Bölümler"><button type="button" id="homeTab" class="active">🎮 Oyun</button><button type="button" id="friendsTab">👥 Arkadaşlar</button></nav>
+    <main>
+      <section class="card" id="startScreen" aria-labelledby="startTitle">
+        <p class="eyebrow">Hızlı bilgi oyunu</p>
+        <h1 class="hero" id="startTitle">Bir dakika.<br><strong>Kaç doğru?</strong></h1>
+        <p class="lead">60 saniyede olabildiğince çok soruyu yanıtla. Üst üste doğru cevaplarla puanını yükselt, skorunu arkadaşlarınla paylaş.</p>
+        <button class="primary" id="startButton">Oyuna başla →</button>
+        <div class="info"><span>⏱ 60 saniye</span><span>🔥 Seri puanı</span><span>📱 Telefonda oynanır</span></div>
+      </section>
+      <section class="card" id="friendsScreen" aria-labelledby="friendsTitle" hidden>
+        <p class="eyebrow">Birlikte yarış</p><h2 id="friendsTitle">Arkadaşlar</h2>
+        <p class="muted" id="onlineIntro">Kullanıcı adıyla arkadaşlarını bul, takip et ve en iyi skorlarını gör.</p>
+        <p class="status" id="socialStatus" role="status"></p>
+        <div id="setupNotice" hidden><p class="muted">Arkadaşlar bölümü için Supabase bağlantısı henüz kurulmadı.</p></div>
+        <div id="authPanel" hidden>
+          <label class="field">Kullanıcı adı <input id="usernameInput" autocomplete="username" maxlength="20" placeholder="ör. oyunsever"></label>
+          <label class="field">E-posta <input id="emailInput" type="email" autocomplete="email" placeholder="ornek@eposta.com"></label>
+          <label class="field">Şifre <input id="passwordInput" type="password" autocomplete="current-password" minlength="8" placeholder="En az 8 karakter"></label>
+          <button class="primary" type="button" id="signupButton">Hesap oluştur</button>
+          <button class="secondary" type="button" id="loginButton">Giriş yap</button>
+        </div>
+        <div id="socialPanel" hidden>
+          <div class="row"><strong id="myUsername"></strong><button class="smallbtn" type="button" id="logoutButton">Çıkış</button></div>
+          <label class="field">Kullanıcı adı ara <input id="searchInput" maxlength="20" placeholder="Arkadaşının kullanıcı adı"></label>
+          <button class="smallbtn" type="button" id="searchButton">Ara</button>
+          <div id="searchResults" class="friendlist"></div>
+          <h3 class="sectiontitle">Takip ettiklerim</h3><div id="followingList" class="friendlist"></div>
+          <button class="smallbtn" type="button" id="deleteAccountButton" style="margin-top:22px">Hesabımı sil</button>
+        </div>
+      </section>
+      <section class="card" id="gameScreen" aria-label="Oyun" hidden>
+        <div class="topline"><div class="time" id="timer" aria-live="off">01:00</div><div class="score">PUAN <span id="score">0</span></div></div>
+        <div class="bar" aria-hidden="true"><div id="timeBar"></div></div>
+        <p class="number" id="questionNumber">SORU 1</p>
+        <h2 class="question" id="question"></h2>
+        <div class="answers" id="answers"></div>
+        <p class="feedback" id="feedback" aria-live="polite"></p>
+      </section>
+      <section class="card" id="resultScreen" aria-labelledby="resultTitle" hidden>
+        <div class="result-icon" aria-hidden="true">🏆</div>
+        <p class="eyebrow">Süre bitti!</p>
+        <h2 class="result-score" id="resultTitle"><span id="finalScore">0</span> puan</h2>
+        <p class="result-label" id="resultMessage"></p>
+        <div class="stats"><div class="stat"><b id="correctCount">0</b><small>Doğru cevap</small></div><div class="stat"><b id="bestStreak">0</b><small>En uzun seri</small></div></div>
+        <button class="primary" id="retryButton">Tekrar oyna ↻</button>
+        <button class="secondary" id="shareButton">Skorumu paylaş</button>
+        <p class="note" id="shareNote">Arkadaşına meydan oku!</p>
+      </section>
+    </main>
+    <footer>İlk sürüm • Ücretsiz oyun • <a href="privacy.html" style="color:#ddd7ff">Gizlilik</a></footer>
+  </div>
+  <script>
+    'use strict';
+    const questions = [
+      {q:'Türkiye’nin başkenti neresidir?',a:['İstanbul','Ankara','İzmir','Bursa'],c:1},
+      {q:'Bir yılda kaç ay vardır?',a:['10','11','12','13'],c:2},
+      {q:'Güneş sistemindeki en büyük gezegen hangisi?',a:['Mars','Dünya','Satürn','Jüpiter'],c:3},
+      {q:'Su, deniz seviyesinde kaç °C’de kaynar?',a:['50','80','100','120'],c:2},
+      {q:'“Küçük Prens” kitabının yazarı kimdir?',a:['Jules Verne','Antoine de Saint-Exupéry','Victor Hugo','Albert Camus'],c:1},
+      {q:'Bir üçgenin iç açıları toplamı kaç derecedir?',a:['90','180','270','360'],c:1},
+      {q:'Dünyanın doğal uydusu hangisidir?',a:['Ay','Venüs','Mars','Güneş'],c:0},
+      {q:'Hangi hayvan memelidir?',a:['Penguen','Yunus','Kaplumbağa','Köpekbalığı'],c:1},
+      {q:'“Mona Lisa” tablosunu kim yaptı?',a:['Van Gogh','Picasso','Leonardo da Vinci','Michelangelo'],c:2},
+      {q:'1 kilometre kaç metredir?',a:['100','500','1000','10000'],c:2},
+      {q:'Dünyanın en büyük okyanusu hangisidir?',a:['Atlas','Hint','Arktik','Pasifik'],c:3},
+      {q:'Hangi renk mavi ve sarının karışımıdır?',a:['Yeşil','Mor','Turuncu','Pembe'],c:0},
+      {q:'Haftada kaç gün vardır?',a:['5','6','7','8'],c:2},
+      {q:'Bir düzine kaç tanedir?',a:['10','12','20','24'],c:1},
+      {q:'Hangi gezegen “Kızıl Gezegen” olarak bilinir?',a:['Venüs','Mars','Neptün','Merkür'],c:1},
+      {q:'Hangi organ kanı vücuda pompalar?',a:['Akciğer','Beyin','Kalp','Mide'],c:2},
+      {q:'Satrançta hangi taş L şeklinde hareket eder?',a:['Kale','Fil','At','Vezir'],c:2},
+      {q:'Bir saat kaç dakikadır?',a:['30','45','60','90'],c:2},
+      {q:'Türkiye hangi iki kıta arasında yer alır?',a:['Asya ve Avrupa','Avrupa ve Afrika','Asya ve Afrika','Avrupa ve Amerika'],c:0},
+      {q:'Hangi sayı asal sayıdır?',a:['9','15','17','21'],c:2},
+      {q:'Gökkuşağında kaç temel renk sayılır?',a:['5','6','7','8'],c:2},
+      {q:'Hangi madde bir elementtir?',a:['Su','Tuz','Oksijen','Şeker'],c:2},
+      {q:'İnsan vücudundaki en büyük organ hangisidir?',a:['Kalp','Karaciğer','Deri','Akciğer'],c:2},
+      {q:'Hangi sayı 3 × 7 işleminin sonucudur?',a:['18','20','21','24'],c:2}
+    ];
+    const $ = id => document.getElementById(id);
+    const bestKey = 'duello60-best-v1', seenKey='duello60-seen-v2';
+    let best = 0;
+    try { best = Number(localStorage.getItem(bestKey)) || 0; } catch (_) {}
+    $('bestBadge').textContent = `En iyi: ${best}`;
+    let deck=[], index=0, score=0, correct=0, streak=0, maxStreak=0, endAt=0, tickId=null, nextId=null, locked=false, active=false, asked=0;
+    function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+    function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+    function mathQuestion(){
+      const kind=rand(0,3);let q,n;
+      if(kind===0){const a=rand(12,89),b=rand(11,69);q=`${a} + ${b} kaçtır?`;n=a+b;}
+      else if(kind===1){const a=rand(40,99),b=rand(9,a-5);q=`${a} − ${b} kaçtır?`;n=a-b;}
+      else if(kind===2){const a=rand(3,12),b=rand(3,12);q=`${a} × ${b} kaçtır?`;n=a*b;}
+      else{const first=rand(2,12),step=rand(2,9);q=`${first}, ${first+step}, ${first+2*step}, … sıradaki sayı?`;n=first+3*step;}
+      const choices=new Set([n]);while(choices.size<4){const candidate=n+rand(-13,13);if(candidate>=0)choices.add(candidate);}
+      const a=shuffle([...choices]);return{q,a:a.map(String),c:a.indexOf(n)};
+    }
+    function freshDeck(){
+      let seen=[];try{seen=JSON.parse(localStorage.getItem(seenKey)||'[]');if(!Array.isArray(seen))seen=[];}catch(_){}
+      let unused=questions.map((q,i)=>({...q,id:i})).filter(q=>!seen.includes(q.id));
+      if(!unused.length){seen=[];unused=questions.map((q,i)=>({...q,id:i}));try{localStorage.setItem(seenKey,'[]');}catch(_){}}
+      const generated=[], prompts=new Set();
+      while(generated.length<60){const item=mathQuestion();if(!prompts.has(item.q)){prompts.add(item.q);generated.push(item);}}
+      deck=shuffle([...unused,...generated]);index=0;
+    }
+    function show(screen){for(const id of ['startScreen','gameScreen','resultScreen','friendsScreen']) $(id).hidden=id!==screen;$('homeTab').classList.toggle('active',screen!=='friendsScreen');$('friendsTab').classList.toggle('active',screen==='friendsScreen');}
+    function start(){
+      clearInterval(tickId);clearTimeout(nextId);freshDeck();score=0;correct=0;streak=0;maxStreak=0;asked=0;locked=false;active=true;endAt=performance.now()+60000;$('friendsTab').disabled=true;
+      $('score').textContent='0';$('feedback').textContent='';show('gameScreen');renderQuestion();tick();tickId=setInterval(tick,100);
+    }
+    function tick(){if(!active)return;const remaining=Math.max(0,endAt-performance.now());$('timer').textContent=`00:${String(Math.ceil(remaining/1000)).padStart(2,'0')}`;$('timer').classList.toggle('low',remaining<=10000);$('timeBar').style.width=`${remaining/600}%`;if(remaining<=0)finish();}
+    function renderQuestion(){
+      if(!active)return;if(index>=deck.length)freshDeck();const item=deck[index];locked=false;
+      if(item.id!==undefined){try{const seen=JSON.parse(localStorage.getItem(seenKey)||'[]');if(!seen.includes(item.id)){seen.push(item.id);localStorage.setItem(seenKey,JSON.stringify(seen));}}catch(_){}}
+      $('questionNumber').textContent=`SORU ${asked+1}`;
+      $('question').textContent=item.q;$('feedback').textContent='';$('feedback').className='feedback';
+      $('answers').replaceChildren(...item.a.map((answer,i)=>{const button=document.createElement('button');button.className='answer';button.type='button';const letter=document.createElement('span');letter.className='letter';letter.textContent='ABCD'[i];button.append(letter,document.createTextNode(answer));button.addEventListener('click',()=>choose(i));return button;}));
+    }
+    function choose(choice){
+      if(!active||locked)return;locked=true;asked++;const item=deck[index];const buttons=[...$('answers').children];buttons.forEach((button,i)=>{button.disabled=true;if(i===item.c)button.classList.add('correct');if(i===choice&&i!==item.c)button.classList.add('wrong');});
+      if(choice===item.c){correct++;streak++;maxStreak=Math.max(maxStreak,streak);const gained=100+Math.min(streak-1,5)*20;score+=gained;$('score').textContent=String(score);$('feedback').textContent=`Doğru! +${gained}${streak>=2?` • ${streak} seri 🔥`:''}`;$('feedback').classList.add('good');}
+      else{streak=0;$('feedback').textContent=`Yanlış! Doğru cevap: ${item.a[item.c]}`;$('feedback').classList.add('bad');}
+      index++;nextId=setTimeout(()=>{if(active)renderQuestion();},650);
+    }
+    function finish(){
+      if(!active)return;active=false;clearInterval(tickId);clearTimeout(nextId);$('friendsTab').disabled=false;
+      if(score>best){best=score;try{localStorage.setItem(bestKey,String(best));}catch(_){}$('bestBadge').textContent=`En iyi: ${best}`;}
+      $('finalScore').textContent=String(score);$('correctCount').textContent=String(correct);$('bestStreak').textContent=String(maxStreak);
+      $('resultMessage').textContent=score>=1500?'Harika! Bunu geçmek zor.':score>=700?'Güzel skor! Bir tur daha?':'İlk düello tamamlandı. Yeniden dene!';$('shareNote').textContent='Arkadaşına meydan oku!';show('resultScreen');saveOnlineScore();
+    }
+    async function share(){
+      const message=`60 Saniye Düello'da ${score} puan yaptım (${correct} doğru)! Benim skorumu geçebilir misin? ⚡`;
+      try{if(navigator.share){await navigator.share({title:'60 Saniye Düello',text:message});return;}if(navigator.clipboard){await navigator.clipboard.writeText(message);$('shareNote').textContent='Skor metni kopyalandı!';return;}}catch(error){if(error.name==='AbortError')return;}
+      $('shareNote').textContent='Paylaşım desteklenmiyor. Skorunun ekran görüntüsünü gönderebilirsin.';
+    }
+    $('startButton').addEventListener('click',start);
+    $('retryButton').addEventListener('click',start);
+    $('shareButton').addEventListener('click',share);
+    $('homeTab').addEventListener('click',()=>{if(!active)show('startScreen');});
+    $('friendsTab').addEventListener('click',()=>{if(!active){show('friendsScreen');refreshSocial();}});
+  </script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="duello-config.js"></script>
+  <script src="duello-social.js"></script>
+</body>
+</html>
+
+
+
